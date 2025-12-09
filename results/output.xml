@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.14.2 on win32)" generated="2025-12-09T16:06:21.618942" rpa="false" schemaversion="5">
+<suite id="s1" name="Projeto-Robot-Framework-Api" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api">
+<suite id="s1-s1" name="Restful-Booker" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\restful-booker.robot">
+<kw name="Authenticate as Admin" type="SETUP">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T16:06:21.715565" level="INFO">${body} = {'username': 'admin', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>username=admin</arg>
+<arg>password=password123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T16:06:21.715125" elapsed="0.000647"/>
+</kw>
+<kw name="POST">
+<msg time="2025-12-09T16:06:21.717292" level="FAIL">No keyword with name 'POST' found.</msg>
+<var>${response}</var>
+<arg>url=https://restful-booker.herokuapp.com/auth</arg>
+<arg>json=${body}</arg>
+<status status="FAIL" start="2025-12-09T16:06:21.716577" elapsed="0.005689">No keyword with name 'POST' found.</status>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-12-09T16:06:21.723129" elapsed="0.000244"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${token}</var>
+<arg>${response.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-12-09T16:06:21.723516" elapsed="0.000109"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>${token}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-12-09T16:06:21.723736" elapsed="0.000077"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" start="2025-12-09T16:06:21.723928" elapsed="0.000079"/>
+</kw>
+<status status="FAIL" start="2025-12-09T16:06:21.714520" elapsed="0.009654">No keyword with name 'POST' found.</status>
+</kw>
+<test id="s1-s1-t1" name="Get Bookings from Restful Booker" line="7">
+<status status="FAIL" start="2025-12-09T16:06:21.724295" elapsed="0.003420">Parent suite setup failed:
+No keyword with name 'POST' found.</status>
+</test>
+<status status="FAIL" start="2025-12-09T16:06:21.688530" elapsed="0.044091">Suite setup failed:
+No keyword with name 'POST' found.</status>
+</suite>
+<status status="FAIL" start="2025-12-09T16:06:21.649377" elapsed="0.087515"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Projeto-Robot-Framework-Api" id="s1" pass="0" fail="1" skip="0">Projeto-Robot-Framework-Api</stat>
+<stat name="Restful-Booker" id="s1-s1" pass="0" fail="1" skip="0">Projeto-Robot-Framework-Api.Restful-Booker</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-12-09T16:06:21.692301" level="ERROR">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\restful-booker.robot' on line 2: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\lib
+  C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\resources
+  c:\Users\migue\.vscode\extensions\d-biehl.robotcode-2.1.0\bundled\libs
+  c:\Users\migue\.vscode\extensions\d-biehl.robotcode-2.1.0\bundled\tool\robotcode
+  C:\Program Files\Python314\python314.zip
+  C:\Program Files\Python314\DLLs
+  C:\Program Files\Python314\Lib
+  C:\Program Files\Python314
+  C:\Users\migue\AppData\Roaming\Python\Python314\site-packages
+  C:\Program Files\Python314\Lib\site-packages</msg>
+</errors>
+</robot>
