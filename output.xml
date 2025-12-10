@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.14.2 on win32)" generated="2025-12-09T23:22:32.325015" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests">
+<suite id="s1-s1" name="Api" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api">
+<suite id="s1-s1-s1" name="Estudando" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\estudando.robot">
+<kw name="Setup Suite" type="SETUP">
+<msg time="2025-12-09T23:22:32.434022" level="FAIL">No keyword with name 'Setup Suite' found.</msg>
+<status status="FAIL" start="2025-12-09T23:22:32.433949" elapsed="0.000135">No keyword with name 'Setup Suite' found.</status>
+</kw>
+<test id="s1-s1-s1-t1" name="Get Google Homepage" line="22">
+<status status="FAIL" start="2025-12-09T23:22:32.434229" elapsed="0.000453">Parent suite setup failed:
+No keyword with name 'Setup Suite' found.</status>
+</test>
+<kw name="Teardown Suite" type="TEARDOWN">
+<msg time="2025-12-09T23:22:32.436314" level="FAIL">No keyword with name 'Teardown Suite' found.</msg>
+<status status="FAIL" start="2025-12-09T23:22:32.436267" elapsed="0.000096">No keyword with name 'Teardown Suite' found.</status>
+</kw>
+<status status="FAIL" start="2025-12-09T23:22:32.350896" elapsed="0.085522">Suite setup failed:
+No keyword with name 'Setup Suite' found.
+
+Also suite teardown failed:
+No keyword with name 'Teardown Suite' found.</status>
+</suite>
+<suite id="s1-s1-s2" name="Restful-Booker" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\restful-booker.robot">
+<kw name="Authenticate as Admin" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:32.439146" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-09T23:22:32.439008" elapsed="0.000299"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:32.439649" level="INFO">${body} = {'username': 'admin', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>username=admin</arg>
+<arg>password=password123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:32.439412" elapsed="0.000259"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:33.128051" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '48', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password123"}' 
+ </msg>
+<msg time="2025-12-09T23:22:33.128155" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Content-Length': '27', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:56 GMT', 'Etag': 'W/"1b-4TIlTrNsToW8FVOWRSafh8R4ka0"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=DEURhHGeLEEsVm67k2UH3YuahyaiGNCToz1e7M%2FYrqo%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333316"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=DEURhHGeLEEsVm67k2UH3YuahyaiGNCToz1e7M%2FYrqo%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333316"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"token":"3ea41cc1fbbf18a"} 
+ </msg>
+<msg time="2025-12-09T23:22:33.128221" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:33.128477" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/auth</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:32.439786" elapsed="0.688713"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-12-09T23:22:33.129076" level="INFO">${token} = 3ea41cc1fbbf18a</msg>
+<var>${token}</var>
+<arg>${response.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.128657" elapsed="0.000440"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-12-09T23:22:33.129317" level="INFO">${token} = 3ea41cc1fbbf18a</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.129196" elapsed="0.000149"/>
+</kw>
+<status status="PASS" start="2025-12-09T23:22:32.438827" elapsed="0.690570"/>
+</kw>
+<test id="s1-s1-s2-t1" name="Get Bookings from Restful Booker" line="11">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:33.129880" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-09T23:22:33.129766" elapsed="0.000240"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:33.130316" level="INFO">${params} = {'firstname': 'John'}</msg>
+<var>${params}</var>
+<arg>firstname=John</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.130179" elapsed="0.000183"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:33.798468" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/booking?firstname=John 
+ path_url=/booking?firstname=John 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-12-09T23:22:33.798563" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/booking?firstname=John 
+ status=200, reason=OK 
+ headers={'Content-Length': '4600', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:57 GMT', 'Etag': 'W/"11f8-RrFhp4EatO9YdD0p29rF/2X+Lyg"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=CzbBqvqW267dOpqqilTKiUZSutoCl%2F9tZW03Iurt880%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333317"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=CzbBqvqW267dOpqqilTKiUZSutoCl%2F9tZW03Iurt880%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333317"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body=[{"bookingid":532},{"bookingid":491},{"bookingid":34},{"bookingid":18},{"bookingid":500},{"bookingid":545},{"bookingid":378},{"bookingid":404},{"bookingid":385},{"bookingid":713},{"bookingid":686},{"bookingid":599},{"bookingid":16},{"bookingid":634},{"bookingid":555},{"bookingid":748},{"bookingid":687},{"bookingid":343},{"bookingid":620},{"bookingid":656},{"bookingid":425},{"bookingid":538},{"bookingid":388},{"bookingid":497},{"bookingid":41},{"bookingid":192},{"bookingid":332},{"bookingid":455},{"bookingid":381},{"bookingid":450},{"bookingid":509},{"bookingid":506},{"bookingid":637},{"bookingid":197},{"bookingid":361},{"bookingid":350},{"bookingid":523},{"bookingid":115},{"bookingid":285},{"bookingid":674},{"bookingid":116},{"bookingid":126},{"bookingid":187},{"bookingid":464},{"bookingid":333},{"bookingid":783},{"bookingid":602},{"bookingid":210},{"bookingid":663},{"bookingid":801},{"bookingid":817},{"bookingid":130},{"bookingid":800},{"bookingid":112},{"bookingid":293},{"bookingid":271},{"bookingid":248},{"bookingid":54},{"bookingid":12},{"bookingid":274},{"bookingid":486},{"bookingid":584},{"bookingid":472},{"bookingid":209},{"bookingid":178},{"bookingid":752},{"bookingid":735},{"bookingid":572},{"bookingid":740},{"bookingid":468},{"bookingid":553},{"bookingid":770},{"bookingid":542},{"bookingid":215},{"bookingid":238},{"bookingid":435},{"bookingid":669},{"bookingid":226},{"bookingid":102},{"bookingid":790},{"bookingid":778},{"bookingid":157},{"bookingid":805},{"bookingid":536},{"bookingid":797},{"bookingid":268},{"bookingid":771},{"bookingid":793},{"bookingid":832},{"bookingid":37},{"bookingid":409},{"bookingid":416},{"bookingid":662},{"bookingid":841},{"bookingid":26},{"bookingid":326},{"bookingid":45},{"bookingid":456},{"bookingid":550},{"bookingid":419},{"bookingid":615},{"bookingid":180},{"bookingid":257},{"bookingid":213},{"bookingid":668},{"bookingid":501},{"bookingid":547},{"bookingid":645},{"bookingid":301},{"bookingid":529},{"bookingid":567},{"bookingid":762},{"bookingid":242},{"bookingid":359},{"bookingid":635},{"bookingid":139},{"bookingid":49},{"bookingid":446},{"bookingid":593},{"bookingid":578},{"bookingid":589},{"bookingid":81},{"bookingid":788},{"bookingid":471},{"bookingid":100},{"bookingid":594},{"bookingid":757},{"bookingid":580},{"bookingid":657},{"bookingid":741},{"bookingid":232},{"bookingid":128},{"bookingid":172},{"bookingid":124},{"bookingid":811},{"bookingid":631},{"bookingid":163},{"bookingid":574},{"bookingid":89},{"bookingid":614},{"bookingid":173},{"bookingid":206},{"bookingid":406},{"bookingid":244},{"bookingid":683},{"bookingid":374},{"bookingid":608},{"bookingid":775},{"bookingid":21},{"bookingid":520},{"bookingid":151},{"bookingid":586},{"bookingid":369},{"bookingid":280},{"bookingid":309},{"bookingid":236},{"bookingid":294},{"bookingid":320},{"bookingid":511},{"bookingid":183},{"bookingid":514},{"bookingid":315},{"bookingid":431},{"bookingid":88},{"bookingid":63},{"bookingid":106},{"bookingid":340},{"bookingid":694},{"bookingid":729},{"bookingid":466},{"bookingid":266},{"bookingid":259},{"bookingid":368},{"bookingid":722},{"bookingid":58},{"bookingid":277},{"bookingid":677},{"bookingid":767},{"bookingid":695},{"bookingid":718},{"bookingid":678},{"bookingid":40},{"bookingid":400},{"bookingid":200},{"bookingid":253},{"bookingid":95},{"bookingid":164},{"bookingid":105},{"bookingid":710},{"bookingid":621},{"bookingid":321},{"bookingid":189},{"bookingid":412},{"bookingid":449},{"bookingid":365},{"bookingid":25},{"bookingid":79},{"bookingid":251},{"bookingid":201},{"bookingid":290},{"bookingid":761},{"bookingid":626},{"bookingid":327},{"bookingid":219},{"bookingid":561},{"bookingid":703},{"bookingid":826},{"bookingid":714},{"bookingid":701},{"bookingid":132},{"bookingid":145},{"bookingid":27},{"bookingid":94},{"bookingid":299},{"bookingid":804},{"bookingid":441},{"bookingid":84},{"bookingid":492},{"bookingid":351},{"bookingid":481},{"bookingid":61},{"bookingid":434},{"bookingid":158},{"bookingid":352},{"bookingid":604},{"bookingid":169},{"bookingid":73},{"bookingid":52},{"bookingid":651},{"bookingid":526},{"bookingid":746},{"bookingid":782},{"bookingid":836},{"bookingid":121},{"bookingid":263},{"bookingid":719},{"bookingid":76},{"bookingid":607},{"bookingid":300},{"bookingid":440},{"bookingid":518},{"bookingid":377},{"bookingid":706},{"bookingid":152},{"bookingid":823},{"bookingid":692},{"bookingid":755},{"bookingid":838},{"bookingid":420},{"bookingid":347},{"bookingid":426},{"bookingid":284},{"bookingid":629},{"bookingid":829},{"bookingid":338},{"bookingid":461},{"bookingid":393}] 
+ </msg>
+<msg time="2025-12-09T23:22:33.798673" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:33.799070" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/booking</arg>
+<arg>params=${params}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.130490" elapsed="0.668632"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.799365" elapsed="0.000245"/>
+</kw>
+<kw name="Log List" owner="Collections">
+<msg time="2025-12-09T23:22:33.800352" level="INFO">List length is 257 and it contains following items:
+0: {'bookingid': 532}
+1: {'bookingid': 491}
+2: {'bookingid': 34}
+3: {'bookingid': 18}
+4: {'bookingid': 500}
+5: {'bookingid': 545}
+6: {'bookingid': 378}
+7: {'bookingid': 404}
+8: {'bookingid': 385}
+9: {'bookingid': 713}
+10: {'bookingid': 686}
+11: {'bookingid': 599}
+12: {'bookingid': 16}
+13: {'bookingid': 634}
+14: {'bookingid': 555}
+15: {'bookingid': 748}
+16: {'bookingid': 687}
+17: {'bookingid': 343}
+18: {'bookingid': 620}
+19: {'bookingid': 656}
+20: {'bookingid': 425}
+21: {'bookingid': 538}
+22: {'bookingid': 388}
+23: {'bookingid': 497}
+24: {'bookingid': 41}
+25: {'bookingid': 192}
+26: {'bookingid': 332}
+27: {'bookingid': 455}
+28: {'bookingid': 381}
+29: {'bookingid': 450}
+30: {'bookingid': 509}
+31: {'bookingid': 506}
+32: {'bookingid': 637}
+33: {'bookingid': 197}
+34: {'bookingid': 361}
+35: {'bookingid': 350}
+36: {'bookingid': 523}
+37: {'bookingid': 115}
+38: {'bookingid': 285}
+39: {'bookingid': 674}
+40: {'bookingid': 116}
+41: {'bookingid': 126}
+42: {'bookingid': 187}
+43: {'bookingid': 464}
+44: {'bookingid': 333}
+45: {'bookingid': 783}
+46: {'bookingid': 602}
+47: {'bookingid': 210}
+48: {'bookingid': 663}
+49: {'bookingid': 801}
+50: {'bookingid': 817}
+51: {'bookingid': 130}
+52: {'bookingid': 800}
+53: {'bookingid': 112}
+54: {'bookingid': 293}
+55: {'bookingid': 271}
+56: {'bookingid': 248}
+57: {'bookingid': 54}
+58: {'bookingid': 12}
+59: {'bookingid': 274}
+60: {'bookingid': 486}
+61: {'bookingid': 584}
+62: {'bookingid': 472}
+63: {'bookingid': 209}
+64: {'bookingid': 178}
+65: {'bookingid': 752}
+66: {'bookingid': 735}
+67: {'bookingid': 572}
+68: {'bookingid': 740}
+69: {'bookingid': 468}
+70: {'bookingid': 553}
+71: {'bookingid': 770}
+72: {'bookingid': 542}
+73: {'bookingid': 215}
+74: {'bookingid': 238}
+75: {'bookingid': 435}
+76: {'bookingid': 669}
+77: {'bookingid': 226}
+78: {'bookingid': 102}
+79: {'bookingid': 790}
+80: {'bookingid': 778}
+81: {'bookingid': 157}
+82: {'bookingid': 805}
+83: {'bookingid': 536}
+84: {'bookingid': 797}
+85: {'bookingid': 268}
+86: {'bookingid': 771}
+87: {'bookingid': 793}
+88: {'bookingid': 832}
+89: {'bookingid': 37}
+90: {'bookingid': 409}
+91: {'bookingid': 416}
+92: {'bookingid': 662}
+93: {'bookingid': 841}
+94: {'bookingid': 26}
+95: {'bookingid': 326}
+96: {'bookingid': 45}
+97: {'bookingid': 456}
+98: {'bookingid': 550}
+99: {'bookingid': 419}
+100: {'bookingid': 615}
+101: {'bookingid': 180}
+102: {'bookingid': 257}
+103: {'bookingid': 213}
+104: {'bookingid': 668}
+105: {'bookingid': 501}
+106: {'bookingid': 547}
+107: {'bookingid': 645}
+108: {'bookingid': 301}
+109: {'bookingid': 529}
+110: {'bookingid': 567}
+111: {'bookingid': 762}
+112: {'bookingid': 242}
+113: {'bookingid': 359}
+114: {'bookingid': 635}
+115: {'bookingid': 139}
+116: {'bookingid': 49}
+117: {'bookingid': 446}
+118: {'bookingid': 593}
+119: {'bookingid': 578}
+120: {'bookingid': 589}
+121: {'bookingid': 81}
+122: {'bookingid': 788}
+123: {'bookingid': 471}
+124: {'bookingid': 100}
+125: {'bookingid': 594}
+126: {'bookingid': 757}
+127: {'bookingid': 580}
+128: {'bookingid': 657}
+129: {'bookingid': 741}
+130: {'bookingid': 232}
+131: {'bookingid': 128}
+132: {'bookingid': 172}
+133: {'bookingid': 124}
+134: {'bookingid': 811}
+135: {'bookingid': 631}
+136: {'bookingid': 163}
+137: {'bookingid': 574}
+138: {'bookingid': 89}
+139: {'bookingid': 614}
+140: {'bookingid': 173}
+141: {'bookingid': 206}
+142: {'bookingid': 406}
+143: {'bookingid': 244}
+144: {'bookingid': 683}
+145: {'bookingid': 374}
+146: {'bookingid': 608}
+147: {'bookingid': 775}
+148: {'bookingid': 21}
+149: {'bookingid': 520}
+150: {'bookingid': 151}
+151: {'bookingid': 586}
+152: {'bookingid': 369}
+153: {'bookingid': 280}
+154: {'bookingid': 309}
+155: {'bookingid': 236}
+156: {'bookingid': 294}
+157: {'bookingid': 320}
+158: {'bookingid': 511}
+159: {'bookingid': 183}
+160: {'bookingid': 514}
+161: {'bookingid': 315}
+162: {'bookingid': 431}
+163: {'bookingid': 88}
+164: {'bookingid': 63}
+165: {'bookingid': 106}
+166: {'bookingid': 340}
+167: {'bookingid': 694}
+168: {'bookingid': 729}
+169: {'bookingid': 466}
+170: {'bookingid': 266}
+171: {'bookingid': 259}
+172: {'bookingid': 368}
+173: {'bookingid': 722}
+174: {'bookingid': 58}
+175: {'bookingid': 277}
+176: {'bookingid': 677}
+177: {'bookingid': 767}
+178: {'bookingid': 695}
+179: {'bookingid': 718}
+180: {'bookingid': 678}
+181: {'bookingid': 40}
+182: {'bookingid': 400}
+183: {'bookingid': 200}
+184: {'bookingid': 253}
+185: {'bookingid': 95}
+186: {'bookingid': 164}
+187: {'bookingid': 105}
+188: {'bookingid': 710}
+189: {'bookingid': 621}
+190: {'bookingid': 321}
+191: {'bookingid': 189}
+192: {'bookingid': 412}
+193: {'bookingid': 449}
+194: {'bookingid': 365}
+195: {'bookingid': 25}
+196: {'bookingid': 79}
+197: {'bookingid': 251}
+198: {'bookingid': 201}
+199: {'bookingid': 290}
+200: {'bookingid': 761}
+201: {'bookingid': 626}
+202: {'bookingid': 327}
+203: {'bookingid': 219}
+204: {'bookingid': 561}
+205: {'bookingid': 703}
+206: {'bookingid': 826}
+207: {'bookingid': 714}
+208: {'bookingid': 701}
+209: {'bookingid': 132}
+210: {'bookingid': 145}
+211: {'bookingid': 27}
+212: {'bookingid': 94}
+213: {'bookingid': 299}
+214: {'bookingid': 804}
+215: {'bookingid': 441}
+216: {'bookingid': 84}
+217: {'bookingid': 492}
+218: {'bookingid': 351}
+219: {'bookingid': 481}
+220: {'bookingid': 61}
+221: {'bookingid': 434}
+222: {'bookingid': 158}
+223: {'bookingid': 352}
+224: {'bookingid': 604}
+225: {'bookingid': 169}
+226: {'bookingid': 73}
+227: {'bookingid': 52}
+228: {'bookingid': 651}
+229: {'bookingid': 526}
+230: {'bookingid': 746}
+231: {'bookingid': 782}
+232: {'bookingid': 836}
+233: {'bookingid': 121}
+234: {'bookingid': 263}
+235: {'bookingid': 719}
+236: {'bookingid': 76}
+237: {'bookingid': 607}
+238: {'bookingid': 300}
+239: {'bookingid': 440}
+240: {'bookingid': 518}
+241: {'bookingid': 377}
+242: {'bookingid': 706}
+243: {'bookingid': 152}
+244: {'bookingid': 823}
+245: {'bookingid': 692}
+246: {'bookingid': 755}
+247: {'bookingid': 838}
+248: {'bookingid': 420}
+249: {'bookingid': 347}
+250: {'bookingid': 426}
+251: {'bookingid': 284}
+252: {'bookingid': 629}
+253: {'bookingid': 829}
+254: {'bookingid': 338}
+255: {'bookingid': 461}
+256: {'bookingid': 393}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.799784" elapsed="0.000646"/>
+</kw>
+<status status="PASS" start="2025-12-09T23:22:33.129448" elapsed="0.671156"/>
+</test>
+<test id="s1-s1-s2-t2" name="Get base booker" line="18">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:33.801212" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-09T23:22:33.801104" elapsed="0.000223"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:33.801661" level="INFO">${params} = {'firstname': 'John'}</msg>
+<var>${params}</var>
+<arg>firstname=John</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.801492" elapsed="0.000197"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:34.464105" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/booking?firstname=John 
+ path_url=/booking?firstname=John 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-12-09T23:22:34.464204" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/booking?firstname=John 
+ status=200, reason=OK 
+ headers={'Content-Length': '4636', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:57 GMT', 'Etag': 'W/"121c-cW2i5kEaAzl7ugqJRcohHhG7vEM"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=CzbBqvqW267dOpqqilTKiUZSutoCl%2F9tZW03Iurt880%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333317"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=CzbBqvqW267dOpqqilTKiUZSutoCl%2F9tZW03Iurt880%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333317"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body=[{"bookingid":532},{"bookingid":491},{"bookingid":34},{"bookingid":18},{"bookingid":500},{"bookingid":545},{"bookingid":378},{"bookingid":404},{"bookingid":385},{"bookingid":713},{"bookingid":686},{"bookingid":599},{"bookingid":16},{"bookingid":634},{"bookingid":555},{"bookingid":748},{"bookingid":687},{"bookingid":343},{"bookingid":620},{"bookingid":656},{"bookingid":425},{"bookingid":538},{"bookingid":388},{"bookingid":497},{"bookingid":41},{"bookingid":192},{"bookingid":332},{"bookingid":455},{"bookingid":381},{"bookingid":450},{"bookingid":509},{"bookingid":506},{"bookingid":637},{"bookingid":197},{"bookingid":361},{"bookingid":350},{"bookingid":523},{"bookingid":115},{"bookingid":285},{"bookingid":674},{"bookingid":116},{"bookingid":126},{"bookingid":187},{"bookingid":464},{"bookingid":333},{"bookingid":783},{"bookingid":602},{"bookingid":210},{"bookingid":663},{"bookingid":801},{"bookingid":817},{"bookingid":130},{"bookingid":800},{"bookingid":112},{"bookingid":293},{"bookingid":271},{"bookingid":248},{"bookingid":54},{"bookingid":12},{"bookingid":274},{"bookingid":486},{"bookingid":584},{"bookingid":472},{"bookingid":209},{"bookingid":178},{"bookingid":752},{"bookingid":735},{"bookingid":572},{"bookingid":740},{"bookingid":468},{"bookingid":553},{"bookingid":770},{"bookingid":542},{"bookingid":215},{"bookingid":238},{"bookingid":435},{"bookingid":669},{"bookingid":226},{"bookingid":102},{"bookingid":790},{"bookingid":778},{"bookingid":157},{"bookingid":805},{"bookingid":536},{"bookingid":797},{"bookingid":268},{"bookingid":771},{"bookingid":793},{"bookingid":832},{"bookingid":37},{"bookingid":409},{"bookingid":416},{"bookingid":662},{"bookingid":841},{"bookingid":26},{"bookingid":326},{"bookingid":45},{"bookingid":456},{"bookingid":550},{"bookingid":419},{"bookingid":615},{"bookingid":180},{"bookingid":257},{"bookingid":213},{"bookingid":668},{"bookingid":501},{"bookingid":547},{"bookingid":645},{"bookingid":301},{"bookingid":529},{"bookingid":567},{"bookingid":762},{"bookingid":242},{"bookingid":359},{"bookingid":635},{"bookingid":139},{"bookingid":49},{"bookingid":446},{"bookingid":593},{"bookingid":578},{"bookingid":589},{"bookingid":81},{"bookingid":788},{"bookingid":471},{"bookingid":100},{"bookingid":594},{"bookingid":757},{"bookingid":580},{"bookingid":657},{"bookingid":741},{"bookingid":232},{"bookingid":128},{"bookingid":172},{"bookingid":124},{"bookingid":811},{"bookingid":631},{"bookingid":163},{"bookingid":574},{"bookingid":89},{"bookingid":614},{"bookingid":173},{"bookingid":206},{"bookingid":406},{"bookingid":244},{"bookingid":683},{"bookingid":374},{"bookingid":608},{"bookingid":775},{"bookingid":21},{"bookingid":520},{"bookingid":151},{"bookingid":586},{"bookingid":369},{"bookingid":280},{"bookingid":309},{"bookingid":236},{"bookingid":294},{"bookingid":320},{"bookingid":511},{"bookingid":183},{"bookingid":514},{"bookingid":315},{"bookingid":431},{"bookingid":88},{"bookingid":63},{"bookingid":106},{"bookingid":340},{"bookingid":845},{"bookingid":694},{"bookingid":729},{"bookingid":466},{"bookingid":266},{"bookingid":259},{"bookingid":368},{"bookingid":722},{"bookingid":58},{"bookingid":277},{"bookingid":677},{"bookingid":767},{"bookingid":695},{"bookingid":718},{"bookingid":678},{"bookingid":40},{"bookingid":400},{"bookingid":200},{"bookingid":253},{"bookingid":95},{"bookingid":164},{"bookingid":105},{"bookingid":710},{"bookingid":621},{"bookingid":321},{"bookingid":189},{"bookingid":412},{"bookingid":449},{"bookingid":365},{"bookingid":25},{"bookingid":79},{"bookingid":251},{"bookingid":846},{"bookingid":201},{"bookingid":290},{"bookingid":761},{"bookingid":626},{"bookingid":327},{"bookingid":219},{"bookingid":561},{"bookingid":703},{"bookingid":826},{"bookingid":714},{"bookingid":701},{"bookingid":132},{"bookingid":145},{"bookingid":27},{"bookingid":94},{"bookingid":299},{"bookingid":804},{"bookingid":441},{"bookingid":84},{"bookingid":492},{"bookingid":351},{"bookingid":481},{"bookingid":61},{"bookingid":434},{"bookingid":158},{"bookingid":352},{"bookingid":604},{"bookingid":169},{"bookingid":73},{"bookingid":52},{"bookingid":651},{"bookingid":526},{"bookingid":746},{"bookingid":782},{"bookingid":836},{"bookingid":121},{"bookingid":263},{"bookingid":719},{"bookingid":76},{"bookingid":607},{"bookingid":300},{"bookingid":440},{"bookingid":518},{"bookingid":377},{"bookingid":706},{"bookingid":152},{"bookingid":823},{"bookingid":692},{"bookingid":755},{"bookingid":838},{"bookingid":420},{"bookingid":347},{"bookingid":426},{"bookingid":284},{"bookingid":629},{"bookingid":829},{"bookingid":338},{"bookingid":461},{"bookingid":393}] 
+ </msg>
+<msg time="2025-12-09T23:22:34.464286" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:34.464558" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/booking</arg>
+<arg>params=${params}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:33.801840" elapsed="0.662755"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-09T23:22:34.464913" elapsed="0.000282"/>
+</kw>
+<kw name="Log List" owner="Collections">
+<msg time="2025-12-09T23:22:34.465930" level="INFO">List length is 259 and it contains following items:
+0: {'bookingid': 532}
+1: {'bookingid': 491}
+2: {'bookingid': 34}
+3: {'bookingid': 18}
+4: {'bookingid': 500}
+5: {'bookingid': 545}
+6: {'bookingid': 378}
+7: {'bookingid': 404}
+8: {'bookingid': 385}
+9: {'bookingid': 713}
+10: {'bookingid': 686}
+11: {'bookingid': 599}
+12: {'bookingid': 16}
+13: {'bookingid': 634}
+14: {'bookingid': 555}
+15: {'bookingid': 748}
+16: {'bookingid': 687}
+17: {'bookingid': 343}
+18: {'bookingid': 620}
+19: {'bookingid': 656}
+20: {'bookingid': 425}
+21: {'bookingid': 538}
+22: {'bookingid': 388}
+23: {'bookingid': 497}
+24: {'bookingid': 41}
+25: {'bookingid': 192}
+26: {'bookingid': 332}
+27: {'bookingid': 455}
+28: {'bookingid': 381}
+29: {'bookingid': 450}
+30: {'bookingid': 509}
+31: {'bookingid': 506}
+32: {'bookingid': 637}
+33: {'bookingid': 197}
+34: {'bookingid': 361}
+35: {'bookingid': 350}
+36: {'bookingid': 523}
+37: {'bookingid': 115}
+38: {'bookingid': 285}
+39: {'bookingid': 674}
+40: {'bookingid': 116}
+41: {'bookingid': 126}
+42: {'bookingid': 187}
+43: {'bookingid': 464}
+44: {'bookingid': 333}
+45: {'bookingid': 783}
+46: {'bookingid': 602}
+47: {'bookingid': 210}
+48: {'bookingid': 663}
+49: {'bookingid': 801}
+50: {'bookingid': 817}
+51: {'bookingid': 130}
+52: {'bookingid': 800}
+53: {'bookingid': 112}
+54: {'bookingid': 293}
+55: {'bookingid': 271}
+56: {'bookingid': 248}
+57: {'bookingid': 54}
+58: {'bookingid': 12}
+59: {'bookingid': 274}
+60: {'bookingid': 486}
+61: {'bookingid': 584}
+62: {'bookingid': 472}
+63: {'bookingid': 209}
+64: {'bookingid': 178}
+65: {'bookingid': 752}
+66: {'bookingid': 735}
+67: {'bookingid': 572}
+68: {'bookingid': 740}
+69: {'bookingid': 468}
+70: {'bookingid': 553}
+71: {'bookingid': 770}
+72: {'bookingid': 542}
+73: {'bookingid': 215}
+74: {'bookingid': 238}
+75: {'bookingid': 435}
+76: {'bookingid': 669}
+77: {'bookingid': 226}
+78: {'bookingid': 102}
+79: {'bookingid': 790}
+80: {'bookingid': 778}
+81: {'bookingid': 157}
+82: {'bookingid': 805}
+83: {'bookingid': 536}
+84: {'bookingid': 797}
+85: {'bookingid': 268}
+86: {'bookingid': 771}
+87: {'bookingid': 793}
+88: {'bookingid': 832}
+89: {'bookingid': 37}
+90: {'bookingid': 409}
+91: {'bookingid': 416}
+92: {'bookingid': 662}
+93: {'bookingid': 841}
+94: {'bookingid': 26}
+95: {'bookingid': 326}
+96: {'bookingid': 45}
+97: {'bookingid': 456}
+98: {'bookingid': 550}
+99: {'bookingid': 419}
+100: {'bookingid': 615}
+101: {'bookingid': 180}
+102: {'bookingid': 257}
+103: {'bookingid': 213}
+104: {'bookingid': 668}
+105: {'bookingid': 501}
+106: {'bookingid': 547}
+107: {'bookingid': 645}
+108: {'bookingid': 301}
+109: {'bookingid': 529}
+110: {'bookingid': 567}
+111: {'bookingid': 762}
+112: {'bookingid': 242}
+113: {'bookingid': 359}
+114: {'bookingid': 635}
+115: {'bookingid': 139}
+116: {'bookingid': 49}
+117: {'bookingid': 446}
+118: {'bookingid': 593}
+119: {'bookingid': 578}
+120: {'bookingid': 589}
+121: {'bookingid': 81}
+122: {'bookingid': 788}
+123: {'bookingid': 471}
+124: {'bookingid': 100}
+125: {'bookingid': 594}
+126: {'bookingid': 757}
+127: {'bookingid': 580}
+128: {'bookingid': 657}
+129: {'bookingid': 741}
+130: {'bookingid': 232}
+131: {'bookingid': 128}
+132: {'bookingid': 172}
+133: {'bookingid': 124}
+134: {'bookingid': 811}
+135: {'bookingid': 631}
+136: {'bookingid': 163}
+137: {'bookingid': 574}
+138: {'bookingid': 89}
+139: {'bookingid': 614}
+140: {'bookingid': 173}
+141: {'bookingid': 206}
+142: {'bookingid': 406}
+143: {'bookingid': 244}
+144: {'bookingid': 683}
+145: {'bookingid': 374}
+146: {'bookingid': 608}
+147: {'bookingid': 775}
+148: {'bookingid': 21}
+149: {'bookingid': 520}
+150: {'bookingid': 151}
+151: {'bookingid': 586}
+152: {'bookingid': 369}
+153: {'bookingid': 280}
+154: {'bookingid': 309}
+155: {'bookingid': 236}
+156: {'bookingid': 294}
+157: {'bookingid': 320}
+158: {'bookingid': 511}
+159: {'bookingid': 183}
+160: {'bookingid': 514}
+161: {'bookingid': 315}
+162: {'bookingid': 431}
+163: {'bookingid': 88}
+164: {'bookingid': 63}
+165: {'bookingid': 106}
+166: {'bookingid': 340}
+167: {'bookingid': 845}
+168: {'bookingid': 694}
+169: {'bookingid': 729}
+170: {'bookingid': 466}
+171: {'bookingid': 266}
+172: {'bookingid': 259}
+173: {'bookingid': 368}
+174: {'bookingid': 722}
+175: {'bookingid': 58}
+176: {'bookingid': 277}
+177: {'bookingid': 677}
+178: {'bookingid': 767}
+179: {'bookingid': 695}
+180: {'bookingid': 718}
+181: {'bookingid': 678}
+182: {'bookingid': 40}
+183: {'bookingid': 400}
+184: {'bookingid': 200}
+185: {'bookingid': 253}
+186: {'bookingid': 95}
+187: {'bookingid': 164}
+188: {'bookingid': 105}
+189: {'bookingid': 710}
+190: {'bookingid': 621}
+191: {'bookingid': 321}
+192: {'bookingid': 189}
+193: {'bookingid': 412}
+194: {'bookingid': 449}
+195: {'bookingid': 365}
+196: {'bookingid': 25}
+197: {'bookingid': 79}
+198: {'bookingid': 251}
+199: {'bookingid': 846}
+200: {'bookingid': 201}
+201: {'bookingid': 290}
+202: {'bookingid': 761}
+203: {'bookingid': 626}
+204: {'bookingid': 327}
+205: {'bookingid': 219}
+206: {'bookingid': 561}
+207: {'bookingid': 703}
+208: {'bookingid': 826}
+209: {'bookingid': 714}
+210: {'bookingid': 701}
+211: {'bookingid': 132}
+212: {'bookingid': 145}
+213: {'bookingid': 27}
+214: {'bookingid': 94}
+215: {'bookingid': 299}
+216: {'bookingid': 804}
+217: {'bookingid': 441}
+218: {'bookingid': 84}
+219: {'bookingid': 492}
+220: {'bookingid': 351}
+221: {'bookingid': 481}
+222: {'bookingid': 61}
+223: {'bookingid': 434}
+224: {'bookingid': 158}
+225: {'bookingid': 352}
+226: {'bookingid': 604}
+227: {'bookingid': 169}
+228: {'bookingid': 73}
+229: {'bookingid': 52}
+230: {'bookingid': 651}
+231: {'bookingid': 526}
+232: {'bookingid': 746}
+233: {'bookingid': 782}
+234: {'bookingid': 836}
+235: {'bookingid': 121}
+236: {'bookingid': 263}
+237: {'bookingid': 719}
+238: {'bookingid': 76}
+239: {'bookingid': 607}
+240: {'bookingid': 300}
+241: {'bookingid': 440}
+242: {'bookingid': 518}
+243: {'bookingid': 377}
+244: {'bookingid': 706}
+245: {'bookingid': 152}
+246: {'bookingid': 823}
+247: {'bookingid': 692}
+248: {'bookingid': 755}
+249: {'bookingid': 838}
+250: {'bookingid': 420}
+251: {'bookingid': 347}
+252: {'bookingid': 426}
+253: {'bookingid': 284}
+254: {'bookingid': 629}
+255: {'bookingid': 829}
+256: {'bookingid': 338}
+257: {'bookingid': 461}
+258: {'bookingid': 393}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="PASS" start="2025-12-09T23:22:34.465371" elapsed="0.000658"/>
+</kw>
+<status status="PASS" start="2025-12-09T23:22:33.800856" elapsed="0.665336"/>
+</test>
+<test id="s1-s1-s2-t3" name="Create a Booking at Restful Booker" line="26">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:34.466792" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-09T23:22:34.466685" elapsed="0.000220"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:34.467200" level="INFO">${booking_dates} = {'checkin': '2022-12-31', 'checkout': '2023-01-01'}</msg>
+<var>${booking_dates}</var>
+<arg>checkin=2022-12-31</arg>
+<arg>checkout=2023-01-01</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:34.467062" elapsed="0.000156"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:34.467498" level="INFO">${body} = {'firstname': 'Hans', 'lastname': 'Gruber', 'totalprice': '200', 'depositpaid': 'false', 'bookingdates': {'checkin': '2022-12-31', 'checkout': '2023-01-01'}}</msg>
+<var>${body}</var>
+<arg>firstname=Hans</arg>
+<arg>lastname=Gruber</arg>
+<arg>totalprice=200</arg>
+<arg>depositpaid=false</arg>
+<arg>bookingdates=${booking_dates}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:34.467334" elapsed="0.000184"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:35.128767" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/booking 
+ path_url=/booking 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '157', 'Content-Type': 'application/json'} 
+ body=b'{"firstname": "Hans", "lastname": "Gruber", "totalprice": "200", "depositpaid": "false", "bookingdates": {"checkin": "2022-12-31", "checkout": "2023-01-01"}}' 
+ </msg>
+<msg time="2025-12-09T23:22:35.128851" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/booking 
+ status=200, reason=OK 
+ headers={'Content-Length': '168', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:58 GMT', 'Etag': 'W/"a8-//uaQjOnxY3eGSof83VPfA4fczo"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=Sp2u%2BspsD06bH3ROMw%2FXx8rHK8JsJT3AulDSlm4e79k%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333318"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=Sp2u%2BspsD06bH3ROMw%2FXx8rHK8JsJT3AulDSlm4e79k%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333318"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"bookingid":853,"booking":{"firstname":"Hans","lastname":"Gruber","totalprice":200,"depositpaid":true,"bookingdates":{"checkin":"2022-12-31","checkout":"2023-01-01"}}} 
+ </msg>
+<msg time="2025-12-09T23:22:35.128908" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:35.129186" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/booking</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:34.467680" elapsed="0.661544"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.129449" elapsed="0.000182"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-12-09T23:22:35.130209" level="INFO">${id} = 853</msg>
+<var>${id}</var>
+<arg>${response.json()}[bookingid]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.129800" elapsed="0.000430"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-12-09T23:22:35.130534" level="INFO">${id} = 853</msg>
+<arg>${id}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.130407" elapsed="0.000156"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:35.298642" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/booking/853 
+ path_url=/booking/853 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-12-09T23:22:35.298723" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/booking/853 
+ status=200, reason=OK 
+ headers={'Content-Length': '140', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:58 GMT', 'Etag': 'W/"8c-ZyMX7q5MPk1IIZgzio6YfZY3B+o"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=Sp2u%2BspsD06bH3ROMw%2FXx8rHK8JsJT3AulDSlm4e79k%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333318"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=Sp2u%2BspsD06bH3ROMw%2FXx8rHK8JsJT3AulDSlm4e79k%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333318"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"firstname":"Hans","lastname":"Gruber","totalprice":200,"depositpaid":true,"bookingdates":{"checkin":"2022-12-31","checkout":"2023-01-01"}} 
+ </msg>
+<msg time="2025-12-09T23:22:35.298797" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:35.299059" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/booking/${id}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.130696" elapsed="0.168386"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-12-09T23:22:35.299694" level="INFO">{'firstname': 'Hans', 'lastname': 'Gruber', 'totalprice': 200, 'depositpaid': True, 'bookingdates': {'checkin': '2022-12-31', 'checkout': '2023-01-01'}}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.299287" elapsed="0.000447"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()}[lastname]</arg>
+<arg>Gruber</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.299958" elapsed="0.000365"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response.json()}[firstname]</arg>
+<arg>Hans</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.300457" elapsed="0.000322"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-12-09T23:22:35.301212" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.json()}[totalprice]</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.300925" elapsed="0.000335"/>
+</kw>
+<status status="PASS" start="2025-12-09T23:22:34.466431" elapsed="0.834984"/>
+</test>
+<test id="s1-s1-s2-t4" name="Delete Booking" line="41">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:35.301984" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-09T23:22:35.301889" elapsed="0.000212"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-09T23:22:35.302414" level="INFO">${header} = {'Cookie': 'token=3ea41cc1fbbf18a'}</msg>
+<var>${header}</var>
+<arg>Cookie=token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.302248" elapsed="0.000183"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-12-09T23:22:35.992749" level="INFO">DELETE Request : url=https://restful-booker.herokuapp.com/booking/853 
+ path_url=/booking/853 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'token=3ea41cc1fbbf18a', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-12-09T23:22:35.992834" level="INFO">DELETE Response : url=https://restful-booker.herokuapp.com/booking/853 
+ status=201, reason=Created 
+ headers={'Content-Length': '7', 'Content-Type': 'text/plain; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 02:21:59 GMT', 'Etag': 'W/"7-rM9AyJuqT6iOan/xHh+AW+7K/T8"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=gNzccqkIf7tP7TOPyPX3SXMSp1FPAMqRA3cdEmEnRGo%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765333319"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=gNzccqkIf7tP7TOPyPX3SXMSp1FPAMqRA3cdEmEnRGo%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765333319"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body=Created 
+ </msg>
+<msg time="2025-12-09T23:22:35.992888" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-09T23:22:35.993118" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>restful</arg>
+<arg>/booking/${id}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.302560" elapsed="0.690580"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-09T23:22:35.993344" elapsed="0.000176"/>
+</kw>
+<status status="PASS" start="2025-12-09T23:22:35.301653" elapsed="0.692020"/>
+</test>
+<status status="PASS" start="2025-12-09T23:22:32.437041" elapsed="3.557146"/>
+</suite>
+<status status="FAIL" start="2025-12-09T23:22:32.349866" elapsed="3.644931"/>
+</suite>
+<status status="FAIL" start="2025-12-09T23:22:32.326299" elapsed="3.668966"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="4" fail="1" skip="0">Tests</stat>
+<stat name="Api" id="s1-s1" pass="4" fail="1" skip="0">Tests.Api</stat>
+<stat name="Estudando" id="s1-s1-s1" pass="0" fail="1" skip="0">Tests.Api.Estudando</stat>
+<stat name="Restful-Booker" id="s1-s1-s2" pass="4" fail="0" skip="0">Tests.Api.Restful-Booker</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-12-09T23:22:32.431255" level="ERROR">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\estudando.robot' on line 4: Importing library 'JSONLibrary' failed: ModuleNotFoundError: No module named 'JSONLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api
+  C:\Program Files\Python314\python314.zip
+  C:\Program Files\Python314\DLLs
+  C:\Program Files\Python314\Lib
+  C:\Program Files\Python314
+  C:\Users\migue\AppData\Roaming\Python\Python314\site-packages
+  C:\Program Files\Python314\Lib\site-packages</msg>
+<msg time="2025-12-09T23:22:32.431774" level="ERROR">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\estudando.robot' on line 5: Resource file '..\resources\common_keywords.robot' does not exist.</msg>
+<msg time="2025-12-09T23:22:32.432159" level="ERROR">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\estudando.robot' on line 6: Variable file '..\variables\global_variables.py' does not exist.</msg>
+</errors>
+</robot>
