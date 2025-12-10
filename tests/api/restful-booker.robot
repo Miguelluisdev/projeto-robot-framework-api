@@ -15,6 +15,14 @@ Get Bookings from Restful Booker
     Status Should Be    200    ${response}
     Log List    ${response.json()}
 
+Get base booker
+    Create Session    restful    ${BASE_URL}
+    ${params}    Create Dictionary    firstname=John
+    ${response}    GET On Session    restful    /booking    params=${params}
+    Status Should Be    200    ${response}
+    Log List    ${response.json()}
+
+
 Create a Booking at Restful Booker
     Create Session    restful    ${BASE_URL}
     ${booking_dates}    Create Dictionary    checkin=2022-12-31    checkout=2023-01-01
