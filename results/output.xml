@@ -1,93 +1,541 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.14.2 on win32)" generated="2025-12-09T23:26:18.630200" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.14.2 on win32)" generated="2025-12-10T19:12:22.731492" rpa="false" schemaversion="5">
 <suite id="s1" name="Projeto-Robot-Framework-Api" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api">
 <suite id="s1-s1" name="Tests" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests">
 <suite id="s1-s1-s1" name="Api" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api">
-<suite id="s1-s1-s1-s1" name="Estudando" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\estudando.robot">
-<kw name="Setup Suite" type="SETUP">
-<kw name="Log To Console" owner="BuiltIn">
-<arg>\n[SETUP] Criando sessão global...\n</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-12-09T23:26:18.913114" elapsed="0.000523"/>
-</kw>
+<suite id="s1-s1-s1-s1" name="Restful-Booker" source="C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\restful-booker.robot">
+<kw name="Authenticate as Admin" owner="api" type="SETUP">
+<kw name="Create Restful Session" owner="api">
 <kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-12-09T23:26:18.914145" level="INFO">Creating Session using : alias=consultaGoogle, url=https://google.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>consultaGoogle</arg>
+<msg time="2025-12-10T19:12:22.909287" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
 <arg>${BASE_URL}</arg>
 <doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-12-09T23:26:18.913877" elapsed="0.000867"/>
+<status status="PASS" start="2025-12-10T19:12:22.909012" elapsed="0.000610"/>
 </kw>
-<status status="PASS" start="2025-12-09T23:26:18.912146" elapsed="0.002757"/>
+<status status="PASS" start="2025-12-10T19:12:22.908433" elapsed="0.001350"/>
 </kw>
-<test id="s1-s1-s1-s1-t1" name="Get Google Homepage" line="24">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-10T19:12:22.910413" level="INFO">${body} = {'username': 'admin', 'password': 'password123'}</msg>
+<var>${body}</var>
+<arg>username=${ADMIN_USER}</arg>
+<arg>password=${ADMIN_PASS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-10T19:12:22.909923" elapsed="0.000698"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:23.763941" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/auth 
+ path_url=/auth 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '48', 'Content-Type': 'application/json'} 
+ body=b'{"username": "admin", "password": "password123"}' 
+ </msg>
+<msg time="2025-12-10T19:12:23.764386" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/auth 
+ status=200, reason=OK 
+ headers={'Content-Length': '27', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 22:11:46 GMT', 'Etag': 'W/"1b-RaDT9+kNArn39YMjLFQwmaxzX4A"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=8qjCD974eTwQ1mZgekPyP3O2EjouIr6%2B8vf%2B2yyHqe4%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765404706"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=8qjCD974eTwQ1mZgekPyP3O2EjouIr6%2B8vf%2B2yyHqe4%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765404706"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"token":"9592aec5a115210"} 
+ </msg>
+<msg time="2025-12-10T19:12:23.764637" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-10T19:12:23.765181" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>restful</arg>
+<arg>/auth</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-10T19:12:22.910768" elapsed="0.854689"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-12-10T19:12:23.766607" level="INFO">${token} = 9592aec5a115210</msg>
+<var>${token}</var>
+<arg>${resp.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-12-10T19:12:23.765762" elapsed="0.000980"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-12-10T19:12:23.767289" level="INFO">${token} = 9592aec5a115210</msg>
+<arg>${token}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-12-10T19:12:23.766931" elapsed="0.000470"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:22.906520" elapsed="0.860991"/>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="Get Bookings Successfully" line="9">
+<kw name="Create Restful Session" owner="api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:23.779867" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-10T19:12:23.779579" elapsed="0.000619"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:23.779132" elapsed="0.001200"/>
+</kw>
+<kw name="Get Bookings By Firstname" owner="api">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-10T19:12:23.781384" level="INFO">${params} = {'firstname': 'John'}</msg>
+<var>${params}</var>
+<arg>firstname=${firstname}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-10T19:12:23.781011" elapsed="0.000575"/>
+</kw>
 <kw name="GET On Session" owner="RequestsLibrary">
-<msg time="2025-12-09T23:26:19.437187" level="INFO">GET Request : url=https://google.com/ (redirected) 
- path_url=/ 
+<msg time="2025-12-10T19:12:24.432627" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/booking?firstname=John 
+ path_url=/booking?firstname=John 
  headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg time="2025-12-09T23:26:19.437916" level="INFO">GET Response : url=https://www.google.com/ 
+<msg time="2025-12-10T19:12:24.433157" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/booking?firstname=John 
  status=200, reason=OK 
- headers={'Date': 'Wed, 10 Dec 2025 02:25:42 GMT', 'Expires': '-1', 'Cache-Control': 'private, max-age=0', 'Content-Type': 'text/html; charset=ISO-8859-1', 'Content-Security-Policy-Report-Only': "object-src 'none';base-uri 'self';script-src 'nonce-ow1iR29wieGCeQerw5zFiQ' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp", 'Accept-CH': 'Sec-CH-Prefers-Color-Scheme', 'P3P': 'CP="This is not a P3P policy! See g.co/p3phelp for more info."', 'Content-Encoding': 'gzip', 'Server': 'gws', 'X-XSS-Protection': '0', 'X-Frame-Options': 'SAMEORIGIN', 'Set-Cookie': '__Secure-STRP=ADq1D7pBmeczR2A3NMFII5QoE2BMJuGrqA9o7FMzY406kbVTkJnc_ewQf54sGAMfldxg6EtmvTapjaB96Vv0yowZTMrVbBsIwbmg; expires=Wed, 10-Dec-2025 02:30:42 GMT; path=/; domain=.google.com; Secure; SameSite=strict, AEC=AaJma5tAxvNpCbO1SopHNk6hIvj0DASFSKVBV_RGvO3Y8rMjmWndesZZrA; expires=Mon, 08-Jun-2026 02:25:42 GMT; path=/; domain=.google.com; Secure; HttpOnly; SameSite=lax, NID=527=wKAv0VPx8cOifhFmUE2qrxl_p7fWEnFZHBwjbqka615L12b20LdWVT4ZQNai9IGC7gg_hzYn53EB602XtgYLf0UjSH-Rx6tAhdq3nkMOtXSgZ6RFzToZq1o4jc989xrV2uCB_aF9qcB_v-ebFMlpJMUTVGKRAZiuu2ccBaZAYbrEgqpvpqkQdZQx_L-RflHbYA1rxAFxWq6rD2YtqA0Q1ae6S7e0QYI; expires=Thu, 11-Jun-2026 02:25:42 GMT; path=/; domain=.google.com; HttpOnly', 'Alt-Svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000', 'Transfer-Encoding': 'chunked'} 
- body=&lt;!doctype html&gt;&lt;html itemscope="" itemtype="http://schema.org/WebPage" lang="pt-BR"&gt;&lt;head&gt;&lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type"&gt;&lt;meta content="/images/branding/googleg/1x/googleg_standard_color_128dp.png" itemprop="image"&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce="ow1iR29wieGCeQerw5zFiQ"&gt;(function(){var _g={kEI:'Jto4aYD4OLzS1sQP-6bnsAw',kEXPI:'0,56926,146124,1101174,6,2845683,90132,48791,30022,16105,78218,266578,186856,60463,5285373,52,67,15,37,36811505,25228681,152376,65174,30631,9139,4600,328,6225,54189,9976,23252,3296,34511,28335,48278,625,30410,7714,33385,26230,25591,5683,3605,21137,2841,13073,20676,2,1219,4372,6292,16179,2646,99,2,2,4,1,1164,15638,2305,692,4339,9592,4913,793,405,185,4,1379,135,3355,197,5813,2,4194,10,1795,3,9145,775,4384,2,876,25,2204,5089,19,3008,27,768,792,14253,6,8203,4430,473,7435,1031,5337,845,705,1342,1,1,5,12,427,1128,3,2842,9,27,8,3055,1012,1745,4,14378,2990,609,5,1113,389,4,299,2264,84,5,677,3533,609,15,164,570,298,2414,1397,498,4944,1275,7,1787,3,998,46,2,2434,81,4,1346,2072,3780,4,93,3,2558,2,7,707,4654,4,963,741,908,4,919,960,3,6,2,2,2,1014,478,2525,327,952,734,746,5,438,4,1367,1,2,586,241,3,516,363,444,36,3,2004,136,3,2760,88,10,204,441,409,80,308,1008,75,116,4,28,1900,1638,16,4,555,2,109,1917,488,59,307,505,484,5,97,187,208,141,7,507,802,440,5,259,5,197,998,1368,19,293,401,753,93,4,235,1190,126,116,357,4,134,202,164,2199,5,257,177,134,6,154,5,143,1193,218,4,443,24,459,700,2,1203,768,29,141,398,4,93,1088,3,2,2,2,340,358,273,260,5,1293,355,710,15,701,3,2,130,55,267,562,157,138,169,266,84,235,573,404,100,111,245,147,10,97,4,32,4,394,54,307,1171,63,21,240,453,4,1,39,4,1207,1,758,6,551,7,6,16,323,1,1940,411,409,525,248,758,174,194,712,23,540,643,3,2,2,2,56,5,956,1060,9,4,54,3,111,2,881,242,4,199,228,265,664,2,100,228,572,51,262,225,82,753,76,6,3,46,100,143,1,2,1132,162,3,138,1,2,130,1829,1,2,1447,2106,3,196,21011151,18489,5,2992,4,2960,3,2022,6469,2,1558,3,13178,1671,24,52,1143,3,739,6,2469,2,4,2,31,101,413,2469,2,1244,4,438,272,91,275,282,3,87,16,635,1203,6491324,82,2594,2006686,1625708,210217,143,10844095,1,450961,4,540768,65432,1,112,8175,1,3,1883',kBL:'AMJ7',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='pt-BR';google.rdn=false;})();(function(){
-var g=this||self;function k(){return window.google&amp;&amp;window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute("eid")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&amp;&amp;(!a.getAttribute||!(b=a.getAttribute("leid")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&amp;&amp;window.location.protocol==="https:"&amp;&amp;(google.ml&amp;&amp;google.ml(Error("a"),!1,{src:a,glmm:1}),a="");return a}
-function r(a,b,d,c,h){var e="";b.search("&amp;ei=")===-1&amp;&amp;(e="&amp;ei="+n(c),b.search("&amp;lei=")===-1&amp;&amp;(c=p(c))&amp;&amp;(e+="&amp;lei="+c));var f=b.search("&amp;cshid=")===-1&amp;&amp;a!=="slh";c="&amp;zx="+Date.now().toString();g._cshid&amp;&amp;f&amp;&amp;(c+="&amp;cshid="+g._cshid);(d=d())&amp;&amp;(c+="&amp;opi="+d);return"/"+(h||"gen_204")+"?atyp=i&amp;ct="+String(a)+"&amp;cad="+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r("",a,b)};}).call(this);(function(){google.y={};google.sy={};function e(a,b,c){if(a)var d=a.id;else{do d=Math.random();while(c[d])}c[d]=[a,b]}var f;(f=google).x||(f.x=function(a,b){e(a,b,google.y)});var g;(g=google).sx||(g.sx=function(a,b){e(a,b,google.sy)});google.lm=[];var h;(h=google).plm||(h.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var k;(k=google).load||(k.load=function(a,b,c){google.lq.push([[a],b,c])});var l;(l=google).loadAll||(l.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var m;(m=google).lx||(m.lx=function(){});var n=[],p;(p=google).fce||(p.fce=function(a,b,c,d){n.push([a,b,c,d])});google.qce=n;google.adl=[];}).call(this);google.f={};(function(){
-document.documentElement.addEventListener("submit",function(b){var a;if(a=b.target){var c=a.getAttribute("data-submitfalse");a=c==="1"||c==="q"&amp;&amp;!a.elements.q.value?!0:!1}else a=!1;a&amp;&amp;(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener("click",function(b){var a;a:{for(a=b.target;a&amp;&amp;a!==document.documentElement;a=a.parentElement)if(a.tagName==="A"){a=a.getAttribute("data-nohref")==="1";break a}a=!1}a&amp;&amp;b.preventDefault()},!0);}).call(this);&lt;/script&gt;&lt;style&gt;#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}
-&lt;/style&gt;&lt;style&gt;body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#1f1f1f}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#ecedee;border:solid 1px;border-color:#d2d2d2 #70757a #70757a #d2d2d2;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#1f1f1f;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}.Ucigb{width:458px}&lt;/style&gt;&lt;script nonce="ow1iR29wieGCeQerw5zFiQ"&gt;(function(){window.google.erd={jsr:1,bv:2339,de:true,dpf:'aoOs7k2eXRELnrKMVcKGW5-1SYYnsZi8a1gYNLqu3bs'};
-var g=this||self;var k,l=(k=g.mei)!=null?k:1,m,p=(m=g.diel)!=null?m:0,q,r=(q=g.sdo)!=null?q:!0,t=0,u,w=google.erd,x=w.jsr;google.ml=function(a,b,d,n,e){e=e===void 0?2:e;b&amp;&amp;(u=a&amp;&amp;a.message);d===void 0&amp;&amp;(d={});d.cad="ple_"+google.ple+".aple_"+google.aple;if(google.dl)return google.dl(a,e,d,!0),null;b=d;if(x&lt;0){window.console&amp;&amp;console.error(a,b);if(x===-2)throw a;b=!1}else b=!a||!a.message||a.message==="Error loading script"||t&gt;=l&amp;&amp;!n?!1:!0;if(!b)return null;t++;d=d||{};b=encodeURIComponent;var c="/gen_204?atyp=i&amp;ei="+b(google.kEI);google.kEXPI&amp;&amp;(c+="&amp;jexpid="+b(google.kEXPI));c+="&amp;srcpg="+b(google.sn)+"&amp;jsr="+b(w.jsr)+
-"&amp;bver="+b(w.bv);w.dpf&amp;&amp;(c+="&amp;dpf="+b(w.dpf));var f=a.lineNumber;f!==void 0&amp;&amp;(c+="&amp;line="+f);var h=a.fileName;h&amp;&amp;(h.indexOf("-extension:/")&gt;0&amp;&amp;(e=3),c+="&amp;script="+b(h),f&amp;&amp;h===window.location.href&amp;&amp;(f=document.documentElement.outerHTML.split("\n")[f],c+="&amp;cad="+b(f?f.substring(0,300):"No script found.")));google.ple&amp;&amp;google.ple===1&amp;&amp;(e=2);c+="&amp;jsel="+e;for(var v in d)c+="&amp;",c+=b(v),c+="=",c+=b(d[v]);c=c+"&amp;emsg="+b(a.name+": "+a.message);c=c+"&amp;jsst="+b(a.stack||"N/A");c.length&gt;=12288&amp;&amp;(c=c.substring(0,12288));a=c;n||google.log(0,"",a);return a};window.onerror=function(a,b,d,n,e){u!==a&amp;&amp;(a=e instanceof Error?e:Error(a),d===void 0||"lineNumber"in a||(a.lineNumber=d),b===void 0||"fileName"in a||(a.fileName=b),google.ml(a,!1,void 0,!1,a.name==="SyntaxError"||a.message.substring(0,11)==="SyntaxError"||a.message.indexOf("Script error")!==-1?3:p));u=null;r&amp;&amp;t&gt;=l&amp;&amp;(window.onerror=null)};})();&lt;/script&gt;&lt;/head&gt;&lt;body bgcolor="#fff"&gt;&lt;script nonce="ow1iR29wieGCeQerw5zFiQ"&gt;(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n &amp;&amp; window.n();if (document.images){new Image().src=src;}
-if (!iesg){document.f&amp;&amp;document.f.q.focus();document.gbqf&amp;&amp;document.gbqf.q.focus();}
-}
-})();&lt;/script&gt;&lt;div id="mngb"&gt;&lt;div id=gbar&gt;&lt;nobr&gt;&lt;b class=gb1&gt;Pesquisa&lt;/b&gt; &lt;a class=gb1 href="https://www.google.com/imghp?hl=pt-BR&amp;tab=wi"&gt;Imagens&lt;/a&gt; &lt;a class=gb1 href="https://maps.google.com.br/maps?hl=pt-BR&amp;tab=wl"&gt;Maps&lt;/a&gt; &lt;a class=gb1 href="https://play.google.com/?hl=pt-BR&amp;tab=w8"&gt;Play&lt;/a&gt; &lt;a class=gb1 href="https://www.youtube.com/?tab=w1"&gt;YouTube&lt;/a&gt; &lt;a class=gb1 href="https://news.google.com/?tab=wn"&gt;Notícias&lt;/a&gt; &lt;a class=gb1 href="https://mail.google.com/mail/?tab=wm"&gt;Gmail&lt;/a&gt; &lt;a class=gb1 href="https://drive.google.com/?tab=wo"&gt;Drive&lt;/a&gt; &lt;a class=gb1 style="text-decoration:none" href="https://www.google.com.br/intl/pt-BR/about/products?tab=wh"&gt;&lt;u&gt;Mais&lt;/u&gt; &amp;raquo;&lt;/a&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;div id=guser width=100%&gt;&lt;nobr&gt;&lt;span id=gbn class=gbi&gt;&lt;/span&gt;&lt;span id=gbf class=gbf&gt;&lt;/span&gt;&lt;span id=gbe&gt;&lt;/span&gt;&lt;a href="http://www.google.com.br/history/optout?hl=pt-BR" class=gb4&gt;Histórico da Web&lt;/a&gt; | &lt;a  href="/preferences?hl=pt-BR" class=gb4&gt;Configurações&lt;/a&gt; | &lt;a target=_top id=gb_70 href="https://accounts.google.com/ServiceLogin?hl=pt-BR&amp;passive=true&amp;continue=https://www.google.com/&amp;ec=GAZAAQ" class=gb4&gt;Fazer login&lt;/a&gt;&lt;/nobr&gt;&lt;/div&gt;&lt;div class=gbh style=left:0&gt;&lt;/div&gt;&lt;div class=gbh style=right:0&gt;&lt;/div&gt;&lt;/div&gt;&lt;center&gt;&lt;br clear="all" id="lgpd"&gt;&lt;div&gt;&lt;img alt="Google" height="92" src="/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png" style="padding:28px 0 14px" width="272" id="hplogo"&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;form action="/search" name="f"&gt;&lt;table cellpadding="0" cellspacing="0"&gt;&lt;tr valign="top"&gt;&lt;td width="25%"&gt;&amp;nbsp;&lt;/td&gt;&lt;td align="center" nowrap=""&gt;&lt;input name="ie" value="ISO-8859-1" type="hidden"&gt;&lt;input value="pt-BR" name="hl" type="hidden"&gt;&lt;input name="source" type="hidden" value="hp"&gt;&lt;input name="biw" type="hidden"&gt;&lt;input name="bih" type="hidden"&gt;&lt;div class="ds" style="height:32px;margin:4px 0"&gt;... (set the log level to DEBUG or TRACE to see the full content) 
+ headers={'Content-Length': '3662', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 22:11:47 GMT', 'Etag': 'W/"e4e-6aYVtt+2VPp/N3byxPSza2DTi/E"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=6Sfkp3FTqR2WaySqCNAYVk3tIOAdlI7Y4LQD8EbjH9I%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765404707"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=6Sfkp3FTqR2WaySqCNAYVk3tIOAdlI7Y4LQD8EbjH9I%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765404707"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body=[{"bookingid":428},{"bookingid":365},{"bookingid":600},{"bookingid":294},{"bookingid":652},{"bookingid":450},{"bookingid":164},{"bookingid":582},{"bookingid":219},{"bookingid":147},{"bookingid":135},{"bookingid":267},{"bookingid":519},{"bookingid":637},{"bookingid":330},{"bookingid":323},{"bookingid":482},{"bookingid":324},{"bookingid":287},{"bookingid":103},{"bookingid":312},{"bookingid":628},{"bookingid":153},{"bookingid":158},{"bookingid":623},{"bookingid":29},{"bookingid":176},{"bookingid":20},{"bookingid":96},{"bookingid":381},{"bookingid":618},{"bookingid":19},{"bookingid":493},{"bookingid":376},{"bookingid":348},{"bookingid":614},{"bookingid":28},{"bookingid":569},{"bookingid":239},{"bookingid":71},{"bookingid":356},{"bookingid":649},{"bookingid":530},{"bookingid":419},{"bookingid":558},{"bookingid":179},{"bookingid":517},{"bookingid":11},{"bookingid":206},{"bookingid":446},{"bookingid":268},{"bookingid":25},{"bookingid":605},{"bookingid":329},{"bookingid":570},{"bookingid":371},{"bookingid":436},{"bookingid":644},{"bookingid":581},{"bookingid":170},{"bookingid":505},{"bookingid":468},{"bookingid":317},{"bookingid":449},{"bookingid":542},{"bookingid":548},{"bookingid":575},{"bookingid":546},{"bookingid":159},{"bookingid":404},{"bookingid":248},{"bookingid":256},{"bookingid":366},{"bookingid":113},{"bookingid":358},{"bookingid":115},{"bookingid":263},{"bookingid":484},{"bookingid":533},{"bookingid":525},{"bookingid":281},{"bookingid":664},{"bookingid":375},{"bookingid":633},{"bookingid":318},{"bookingid":125},{"bookingid":466},{"bookingid":335},{"bookingid":110},{"bookingid":658},{"bookingid":299},{"bookingid":86},{"bookingid":576},{"bookingid":202},{"bookingid":77},{"bookingid":34},{"bookingid":260},{"bookingid":214},{"bookingid":423},{"bookingid":385},{"bookingid":534},{"bookingid":15},{"bookingid":140},{"bookingid":40},{"bookingid":197},{"bookingid":399},{"bookingid":234},{"bookingid":35},{"bookingid":626},{"bookingid":442},{"bookingid":591},{"bookingid":187},{"bookingid":374},{"bookingid":433},{"bookingid":122},{"bookingid":200},{"bookingid":488},{"bookingid":240},{"bookingid":282},{"bookingid":339},{"bookingid":411},{"bookingid":171},{"bookingid":74},{"bookingid":670},{"bookingid":191},{"bookingid":599},{"bookingid":512},{"bookingid":213},{"bookingid":95},{"bookingid":180},{"bookingid":499},{"bookingid":347},{"bookingid":503},{"bookingid":460},{"bookingid":152},{"bookingid":45},{"bookingid":655},{"bookingid":245},{"bookingid":440},{"bookingid":422},{"bookingid":476},{"bookingid":266},{"bookingid":99},{"bookingid":392},{"bookingid":514},{"bookingid":668},{"bookingid":458},{"bookingid":275},{"bookingid":165},{"bookingid":83},{"bookingid":50},{"bookingid":430},{"bookingid":455},{"bookingid":60},{"bookingid":361},{"bookingid":296},{"bookingid":564},{"bookingid":227},{"bookingid":545},{"bookingid":398},{"bookingid":661},{"bookingid":254},{"bookingid":12},{"bookingid":250},{"bookingid":105},{"bookingid":539},{"bookingid":87},{"bookingid":276},{"bookingid":617},{"bookingid":524},{"bookingid":56},{"bookingid":119},{"bookingid":349},{"bookingid":496},{"bookingid":490},{"bookingid":410},{"bookingid":338},{"bookingid":52},{"bookingid":290},{"bookingid":596},{"bookingid":124},{"bookingid":549},{"bookingid":405},{"bookingid":129},{"bookingid":146},{"bookingid":306},{"bookingid":590},{"bookingid":78},{"bookingid":233},{"bookingid":291},{"bookingid":59},{"bookingid":209},{"bookingid":92},{"bookingid":608},{"bookingid":607},{"bookingid":42},{"bookingid":627},{"bookingid":185},{"bookingid":192},{"bookingid":587},{"bookingid":412},{"bookingid":459},{"bookingid":210},{"bookingid":508},{"bookingid":344}] 
  </msg>
-<msg time="2025-12-09T23:26:19.438323" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'google.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
-  warnings.warn(
-C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'www.google.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+<msg time="2025-12-10T19:12:24.433515" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
   warnings.warn(</msg>
-<msg time="2025-12-09T23:26:19.439090" level="INFO">${res} = &lt;Response [200]&gt;</msg>
-<var>${res}</var>
-<arg>consultaGoogle</arg>
-<arg>/</arg>
+<msg time="2025-12-10T19:12:24.434090" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>restful</arg>
+<arg>/booking</arg>
+<arg>params=${params}</arg>
 <doc>Sends a GET request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-12-09T23:26:18.919329" elapsed="0.520075"/>
+<status status="PASS" start="2025-12-10T19:12:23.781762" elapsed="0.652649"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="PASS" start="2025-12-10T19:12:24.434601" elapsed="0.000202"/>
+</return>
+<msg time="2025-12-10T19:12:24.434984" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>John</arg>
+<status status="PASS" start="2025-12-10T19:12:23.780672" elapsed="0.654502"/>
 </kw>
 <kw name="Status Should Be" owner="RequestsLibrary">
 <arg>200</arg>
-<arg>${res}</arg>
+<arg>${resp}</arg>
 <doc>Fails if response status code is different than the expected.</doc>
-<status status="PASS" start="2025-12-09T23:26:19.439796" elapsed="0.000565"/>
+<status status="PASS" start="2025-12-10T19:12:24.435460" elapsed="0.000395"/>
 </kw>
-<status status="PASS" start="2025-12-09T23:26:18.914997" elapsed="0.525668"/>
+<kw name="Log List" owner="Collections">
+<msg time="2025-12-10T19:12:24.436720" level="INFO">List length is 205 and it contains following items:
+0: {'bookingid': 428}
+1: {'bookingid': 365}
+2: {'bookingid': 600}
+3: {'bookingid': 294}
+4: {'bookingid': 652}
+5: {'bookingid': 450}
+6: {'bookingid': 164}
+7: {'bookingid': 582}
+8: {'bookingid': 219}
+9: {'bookingid': 147}
+10: {'bookingid': 135}
+11: {'bookingid': 267}
+12: {'bookingid': 519}
+13: {'bookingid': 637}
+14: {'bookingid': 330}
+15: {'bookingid': 323}
+16: {'bookingid': 482}
+17: {'bookingid': 324}
+18: {'bookingid': 287}
+19: {'bookingid': 103}
+20: {'bookingid': 312}
+21: {'bookingid': 628}
+22: {'bookingid': 153}
+23: {'bookingid': 158}
+24: {'bookingid': 623}
+25: {'bookingid': 29}
+26: {'bookingid': 176}
+27: {'bookingid': 20}
+28: {'bookingid': 96}
+29: {'bookingid': 381}
+30: {'bookingid': 618}
+31: {'bookingid': 19}
+32: {'bookingid': 493}
+33: {'bookingid': 376}
+34: {'bookingid': 348}
+35: {'bookingid': 614}
+36: {'bookingid': 28}
+37: {'bookingid': 569}
+38: {'bookingid': 239}
+39: {'bookingid': 71}
+40: {'bookingid': 356}
+41: {'bookingid': 649}
+42: {'bookingid': 530}
+43: {'bookingid': 419}
+44: {'bookingid': 558}
+45: {'bookingid': 179}
+46: {'bookingid': 517}
+47: {'bookingid': 11}
+48: {'bookingid': 206}
+49: {'bookingid': 446}
+50: {'bookingid': 268}
+51: {'bookingid': 25}
+52: {'bookingid': 605}
+53: {'bookingid': 329}
+54: {'bookingid': 570}
+55: {'bookingid': 371}
+56: {'bookingid': 436}
+57: {'bookingid': 644}
+58: {'bookingid': 581}
+59: {'bookingid': 170}
+60: {'bookingid': 505}
+61: {'bookingid': 468}
+62: {'bookingid': 317}
+63: {'bookingid': 449}
+64: {'bookingid': 542}
+65: {'bookingid': 548}
+66: {'bookingid': 575}
+67: {'bookingid': 546}
+68: {'bookingid': 159}
+69: {'bookingid': 404}
+70: {'bookingid': 248}
+71: {'bookingid': 256}
+72: {'bookingid': 366}
+73: {'bookingid': 113}
+74: {'bookingid': 358}
+75: {'bookingid': 115}
+76: {'bookingid': 263}
+77: {'bookingid': 484}
+78: {'bookingid': 533}
+79: {'bookingid': 525}
+80: {'bookingid': 281}
+81: {'bookingid': 664}
+82: {'bookingid': 375}
+83: {'bookingid': 633}
+84: {'bookingid': 318}
+85: {'bookingid': 125}
+86: {'bookingid': 466}
+87: {'bookingid': 335}
+88: {'bookingid': 110}
+89: {'bookingid': 658}
+90: {'bookingid': 299}
+91: {'bookingid': 86}
+92: {'bookingid': 576}
+93: {'bookingid': 202}
+94: {'bookingid': 77}
+95: {'bookingid': 34}
+96: {'bookingid': 260}
+97: {'bookingid': 214}
+98: {'bookingid': 423}
+99: {'bookingid': 385}
+100: {'bookingid': 534}
+101: {'bookingid': 15}
+102: {'bookingid': 140}
+103: {'bookingid': 40}
+104: {'bookingid': 197}
+105: {'bookingid': 399}
+106: {'bookingid': 234}
+107: {'bookingid': 35}
+108: {'bookingid': 626}
+109: {'bookingid': 442}
+110: {'bookingid': 591}
+111: {'bookingid': 187}
+112: {'bookingid': 374}
+113: {'bookingid': 433}
+114: {'bookingid': 122}
+115: {'bookingid': 200}
+116: {'bookingid': 488}
+117: {'bookingid': 240}
+118: {'bookingid': 282}
+119: {'bookingid': 339}
+120: {'bookingid': 411}
+121: {'bookingid': 171}
+122: {'bookingid': 74}
+123: {'bookingid': 670}
+124: {'bookingid': 191}
+125: {'bookingid': 599}
+126: {'bookingid': 512}
+127: {'bookingid': 213}
+128: {'bookingid': 95}
+129: {'bookingid': 180}
+130: {'bookingid': 499}
+131: {'bookingid': 347}
+132: {'bookingid': 503}
+133: {'bookingid': 460}
+134: {'bookingid': 152}
+135: {'bookingid': 45}
+136: {'bookingid': 655}
+137: {'bookingid': 245}
+138: {'bookingid': 440}
+139: {'bookingid': 422}
+140: {'bookingid': 476}
+141: {'bookingid': 266}
+142: {'bookingid': 99}
+143: {'bookingid': 392}
+144: {'bookingid': 514}
+145: {'bookingid': 668}
+146: {'bookingid': 458}
+147: {'bookingid': 275}
+148: {'bookingid': 165}
+149: {'bookingid': 83}
+150: {'bookingid': 50}
+151: {'bookingid': 430}
+152: {'bookingid': 455}
+153: {'bookingid': 60}
+154: {'bookingid': 361}
+155: {'bookingid': 296}
+156: {'bookingid': 564}
+157: {'bookingid': 227}
+158: {'bookingid': 545}
+159: {'bookingid': 398}
+160: {'bookingid': 661}
+161: {'bookingid': 254}
+162: {'bookingid': 12}
+163: {'bookingid': 250}
+164: {'bookingid': 105}
+165: {'bookingid': 539}
+166: {'bookingid': 87}
+167: {'bookingid': 276}
+168: {'bookingid': 617}
+169: {'bookingid': 524}
+170: {'bookingid': 56}
+171: {'bookingid': 119}
+172: {'bookingid': 349}
+173: {'bookingid': 496}
+174: {'bookingid': 490}
+175: {'bookingid': 410}
+176: {'bookingid': 338}
+177: {'bookingid': 52}
+178: {'bookingid': 290}
+179: {'bookingid': 596}
+180: {'bookingid': 124}
+181: {'bookingid': 549}
+182: {'bookingid': 405}
+183: {'bookingid': 129}
+184: {'bookingid': 146}
+185: {'bookingid': 306}
+186: {'bookingid': 590}
+187: {'bookingid': 78}
+188: {'bookingid': 233}
+189: {'bookingid': 291}
+190: {'bookingid': 59}
+191: {'bookingid': 209}
+192: {'bookingid': 92}
+193: {'bookingid': 608}
+194: {'bookingid': 607}
+195: {'bookingid': 42}
+196: {'bookingid': 627}
+197: {'bookingid': 185}
+198: {'bookingid': 192}
+199: {'bookingid': 587}
+200: {'bookingid': 412}
+201: {'bookingid': 459}
+202: {'bookingid': 210}
+203: {'bookingid': 508}
+204: {'bookingid': 344}</msg>
+<arg>${resp.json()}</arg>
+<doc>Logs the length and contents of the ``list`` using given ``level``.</doc>
+<status status="PASS" start="2025-12-10T19:12:24.436065" elapsed="0.000829"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:23.767601" elapsed="0.669578"/>
 </test>
-<kw name="Teardown Suite" type="TEARDOWN">
-<kw name="Log To Console" owner="BuiltIn">
-<arg>\n[TEARDOWN] Finalizando...\n</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-12-09T23:26:19.445447" elapsed="0.000353"/>
+<test id="s1-s1-s1-s1-t2" name="Create And Validate Booking" line="16">
+<kw name="Create Restful Session" owner="api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:24.481914" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-10T19:12:24.481285" elapsed="0.001198"/>
 </kw>
-<status status="PASS" start="2025-12-09T23:26:19.445009" elapsed="0.000926"/>
+<status status="PASS" start="2025-12-10T19:12:24.480510" elapsed="0.002112"/>
 </kw>
-<status status="PASS" start="2025-12-09T23:26:18.713964" elapsed="0.732026"/>
+<kw name="Create Booking" owner="api">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-10T19:12:24.484227" level="INFO">${dates} = {'checkin': '2022-12-31', 'checkout': '2023-01-01'}</msg>
+<var>${dates}</var>
+<arg>checkin=${checkin}</arg>
+<arg>checkout=${checkout}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-10T19:12:24.483879" elapsed="0.000593"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-10T19:12:24.485019" level="INFO">${body} = {'firstname': 'Hans', 'lastname': 'Gruber', 'totalprice': '200', 'depositpaid': 'false', 'bookingdates': {'checkin': '2022-12-31', 'checkout': '2023-01-01'}}</msg>
+<var>${body}</var>
+<arg>firstname=${firstname}</arg>
+<arg>lastname=${lastname}</arg>
+<arg>totalprice=${price}</arg>
+<arg>depositpaid=${deposit}</arg>
+<arg>bookingdates=${dates}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-10T19:12:24.484630" elapsed="0.000502"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:25.175814" level="INFO">POST Request : url=https://restful-booker.herokuapp.com/booking 
+ path_url=/booking 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '157', 'Content-Type': 'application/json'} 
+ body=b'{"firstname": "Hans", "lastname": "Gruber", "totalprice": "200", "depositpaid": "false", "bookingdates": {"checkin": "2022-12-31", "checkout": "2023-01-01"}}' 
+ </msg>
+<msg time="2025-12-10T19:12:25.176187" level="INFO">POST Response : url=https://restful-booker.herokuapp.com/booking 
+ status=200, reason=OK 
+ headers={'Content-Length': '168', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 22:11:47 GMT', 'Etag': 'W/"a8-f2Tk6b/dNP5uvtCfCmtitthgUFQ"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=6Sfkp3FTqR2WaySqCNAYVk3tIOAdlI7Y4LQD8EbjH9I%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765404707"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=6Sfkp3FTqR2WaySqCNAYVk3tIOAdlI7Y4LQD8EbjH9I%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765404707"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"bookingid":679,"booking":{"firstname":"Hans","lastname":"Gruber","totalprice":200,"depositpaid":true,"bookingdates":{"checkin":"2022-12-31","checkout":"2023-01-01"}}} 
+ </msg>
+<msg time="2025-12-10T19:12:25.176364" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-10T19:12:25.176729" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>restful</arg>
+<arg>/booking</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-10T19:12:24.485262" elapsed="0.691549"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="PASS" start="2025-12-10T19:12:25.176962" elapsed="0.000196"/>
+</return>
+<msg time="2025-12-10T19:12:25.177326" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>Hans</arg>
+<arg>Gruber</arg>
+<arg>200</arg>
+<arg>false</arg>
+<arg>2022-12-31</arg>
+<arg>2023-01-01</arg>
+<status status="PASS" start="2025-12-10T19:12:24.483293" elapsed="0.694146"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<arg>${resp}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.177722" elapsed="0.000341"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-12-10T19:12:25.178806" level="INFO">${id} = 679</msg>
+<var>${id}</var>
+<arg>${resp.json()}[bookingid]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.178278" elapsed="0.000617"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-12-10T19:12:25.179333" level="INFO">${id} = 679</msg>
+<arg>${id}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.179104" elapsed="0.000320"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:25.359688" level="INFO">GET Request : url=https://restful-booker.herokuapp.com/booking/679 
+ path_url=/booking/679 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-12-10T19:12:25.359916" level="INFO">GET Response : url=https://restful-booker.herokuapp.com/booking/679 
+ status=200, reason=OK 
+ headers={'Content-Length': '140', 'Content-Type': 'application/json; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 22:11:48 GMT', 'Etag': 'W/"8c-ZyMX7q5MPk1IIZgzio6YfZY3B+o"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=UFr0o1oX3%2FQ%2FreRVRK4CA%2F7KfJGwRLDdObU1uRZoaWk%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765404708"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=UFr0o1oX3%2FQ%2FreRVRK4CA%2F7KfJGwRLDdObU1uRZoaWk%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765404708"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body={"firstname":"Hans","lastname":"Gruber","totalprice":200,"depositpaid":true,"bookingdates":{"checkin":"2022-12-31","checkout":"2023-01-01"}} 
+ </msg>
+<msg time="2025-12-10T19:12:25.360178" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-10T19:12:25.360756" level="INFO">${get} = &lt;Response [200]&gt;</msg>
+<var>${get}</var>
+<arg>restful</arg>
+<arg>/booking/${id}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.179616" elapsed="0.181297"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${get.json()}[firstname]</arg>
+<arg>Hans</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.361395" elapsed="0.001037"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${get.json()}[lastname]</arg>
+<arg>Gruber</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.362767" elapsed="0.000670"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2025-12-10T19:12:25.364050" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${get.json()}[totalprice]</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.363632" elapsed="0.000570"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:24.455395" elapsed="0.909121"/>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Delete Created Booking" line="31">
+<kw name="Create Restful Session" owner="api">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:25.387770" level="INFO">Creating Session using : alias=restful, url=https://restful-booker.herokuapp.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>restful</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-12-10T19:12:25.387539" elapsed="0.000472"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:25.387090" elapsed="0.001044"/>
+</kw>
+<kw name="Delete Booking" owner="api">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-12-10T19:12:25.389231" level="INFO">${headers} = {'Cookie': 'token=9592aec5a115210'}</msg>
+<var>${headers}</var>
+<arg>Cookie=token=${token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.388871" elapsed="0.000929"/>
+</kw>
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-12-10T19:12:26.075242" level="INFO">DELETE Request : url=https://restful-booker.herokuapp.com/booking/679 
+ path_url=/booking/679 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate, zstd', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'token=9592aec5a115210', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-12-10T19:12:26.075680" level="INFO">DELETE Response : url=https://restful-booker.herokuapp.com/booking/679 
+ status=201, reason=Created 
+ headers={'Content-Length': '7', 'Content-Type': 'text/plain; charset=utf-8', 'Date': 'Wed, 10 Dec 2025 22:11:48 GMT', 'Etag': 'W/"7-rM9AyJuqT6iOan/xHh+AW+7K/T8"', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=UFr0o1oX3%2FQ%2FreRVRK4CA%2F7KfJGwRLDdObU1uRZoaWk%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1765404708"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=UFr0o1oX3%2FQ%2FreRVRK4CA%2F7KfJGwRLDdObU1uRZoaWk%3D&amp;sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&amp;ts=1765404708"', 'Server': 'Heroku', 'Via': '1.1 heroku-router', 'X-Powered-By': 'Express'} 
+ body=Created 
+ </msg>
+<msg time="2025-12-10T19:12:26.075882" level="INFO">C:\Users\migue\AppData\Roaming\Python\Python314\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'restful-booker.herokuapp.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-12-10T19:12:26.076388" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
+<var>${resp}</var>
+<arg>restful</arg>
+<arg>/booking/${booking_id}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-12-10T19:12:25.390036" elapsed="0.686548"/>
+</kw>
+<return>
+<value>${resp}</value>
+<status status="PASS" start="2025-12-10T19:12:26.076908" elapsed="0.000462"/>
+</return>
+<msg time="2025-12-10T19:12:26.077850" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
+<var>${resp}</var>
+<arg>${id}</arg>
+<status status="PASS" start="2025-12-10T19:12:25.388472" elapsed="0.689537"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<arg>${resp}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2025-12-10T19:12:26.078324" elapsed="0.000424"/>
+</kw>
+<status status="PASS" start="2025-12-10T19:12:25.376704" elapsed="0.702249"/>
+</test>
+<status status="PASS" start="2025-12-10T19:12:22.788780" elapsed="3.304315"/>
 </suite>
-<status status="PASS" start="2025-12-09T23:26:18.707596" elapsed="0.742231"/>
+<status status="PASS" start="2025-12-10T19:12:22.779350" elapsed="3.317089"/>
 </suite>
-<status status="PASS" start="2025-12-09T23:26:18.700718" elapsed="0.753495"/>
+<status status="PASS" start="2025-12-10T19:12:22.774027" elapsed="3.333452"/>
 </suite>
-<status status="PASS" start="2025-12-09T23:26:18.636347" elapsed="0.820537"/>
+<status status="PASS" start="2025-12-10T19:12:22.736130" elapsed="3.374407"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Projeto-Robot-Framework-Api" id="s1" pass="1" fail="0" skip="0">Projeto-Robot-Framework-Api</stat>
-<stat name="Tests" id="s1-s1" pass="1" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests</stat>
-<stat name="Api" id="s1-s1-s1" pass="1" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests.Api</stat>
-<stat name="Estudando" id="s1-s1-s1-s1" pass="1" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests.Api.Estudando</stat>
+<stat name="Projeto-Robot-Framework-Api" id="s1" pass="3" fail="0" skip="0">Projeto-Robot-Framework-Api</stat>
+<stat name="Tests" id="s1-s1" pass="3" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests</stat>
+<stat name="Api" id="s1-s1-s1" pass="3" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests.Api</stat>
+<stat name="Restful-Booker" id="s1-s1-s1-s1" pass="3" fail="0" skip="0">Projeto-Robot-Framework-Api.Tests.Api.Restful-Booker</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-12-10T19:12:22.792896" level="WARN">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\api.resource' on line 28: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-12-10T19:12:22.798975" level="WARN">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\api.resource' on line 42: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-12-10T19:12:22.806256" level="WARN">Error in file 'C:\Users\migue\OneDrive\Documentos\robot-framework\projeto-robot-framework-api\tests\api\api.resource' on line 49: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
 </errors>
 </robot>
